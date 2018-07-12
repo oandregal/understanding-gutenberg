@@ -1,8 +1,8 @@
-(function( wp ) {
-    function fillBlockSettingsMenuSlot() {
-        return wp.element.createElement( wp.components.Fill, { name: 'BlockSettingsMenuPluginsSlot' }, 'howdy' );
+( function( wp ) {
+    function fillBlockSettingsMenuSlot( ) {
+        return wp.element.createElement( wp.editor.BlockSettingsMenuPluginsGroup, null, 'heya' );
     }
     wp.plugins.registerPlugin( 'blocksettingsmenu-plugin', {
         render: fillBlockSettingsMenuSlot,
     });
-})( window.wp );
+} )( window.wp );
