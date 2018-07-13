@@ -5,8 +5,9 @@
             {
                 icon: 'screenoptions',
                 label: 'My new plugin',
-                onClick: function( uid ) {
-                    console.log( 'Block UID is ', uid );
+                allowedBlocks: [ 'core/paragraph' ],
+                onClick: function( ) {
+                    console.log( 'Block clicked' );
                 }
             },
             null,
