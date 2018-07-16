@@ -1,13 +1,13 @@
 ( function( wp ) {
     function fillBlockSettingsMenuSlot( ) {
         return wp.element.createElement(
-            wp.editor.BlockSettingsMenuPluginsItem,
+            wp.editPost.PluginBlockSettingsMenuItem,
             {
                 icon: 'screenoptions',
                 label: 'My new plugin',
                 allowedBlocks: [ 'core/paragraph' ],
                 onClick: function( ) {
-                    console.log( 'Block clicked' );
+                    console.log( 'Block clicked ' );
                 }
             },
             null,
