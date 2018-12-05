@@ -2,6 +2,6 @@
 	"rootDir": "..",
 	"preset": "jest-puppeteer",
 	"testMatch": [
-		"<rootDir>tests/**.test.js"
+		"<rootDir>tests/e2e/**.test.js"
 	]
 }
