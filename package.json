@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/nosolosw/blocksettingsmenu-plugin#readme",
   "devDependencies": {
-    "@wordpress/scripts": "../gutenberg/packages/scripts"
+    "@wordpress/scripts": "file:../gutenberg/packages/scripts"
   }
 }
