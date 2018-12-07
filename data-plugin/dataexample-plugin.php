@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: dataexample
- * Plugin URI: https://github.com/nosolosw/dataexample-plugin
- * Description: Plugin to showcase how to work with data
+ * Plugin Name: Understanding Gutenberg: Data
+ * Plugin URI: https://github.com/nosolosw/understanding-gutenberg
+ * Description: Plugin to showcase how to work with data.
  * Version: 0.0.1
  */
 

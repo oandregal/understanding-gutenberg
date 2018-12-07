@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Block Example
- * Plugin URI: https://github.com/nosolosw/blockexample-plugin
- * Description: Plugin to showcase how to work with blocks
+ * Plugin Name: Understanding Gutenberg: Block
+ * Plugin URI: https://github.com/nosolosw/understanding-gutenberg
+ * Description: Plugin to showcase how to work with blocks.
  * Version: 0.0.1
  */
 

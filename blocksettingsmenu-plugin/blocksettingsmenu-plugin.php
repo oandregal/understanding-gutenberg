@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name: Block Settings Menu Testcase
- * Plugin URI: https://github.com/nosolosw/blocksettingsmenu-plugin
+ * Plugin Name: Understanding Gutenberg: Block Settings Menu
+ * Plugin URI: https://github.com/nosolosw/understanding-gutenberg
  * Description: Plugin to test the block settings menu slot.
  * Version: 0.0.1
  */
