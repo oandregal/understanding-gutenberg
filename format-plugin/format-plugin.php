@@ -20,8 +20,13 @@ function format_plugin_script_register() {
 }
 add_action( 'init', 'format_plugin_script_register' );
 
-function format_plugin_script_enqueue() {
+function format_plugin_enqueue_assets_editor() {
 	wp_enqueue_script( 'format-plugin-js' );
 	wp_enqueue_style( 'format-plugin-css' );
 }
-add_action( 'enqueue_block_editor_assets', 'format_plugin_script_enqueue' );
+add_action( 'enqueue_block_editor_assets', 'format_plugin_enqueue_assets_editor' );
+
+function format_plugin_enqueue_assets_frontend() {
+	wp_enqueue_style( 'format-plugin-css' );
+}
+add_action( 'enqueue_block_assets', 'format_plugin_enqueue_assets_frontend' );
