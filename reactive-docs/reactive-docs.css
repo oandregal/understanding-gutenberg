@@ -1,0 +1,9 @@
+/** @format */
+
+.reactivedocs-input {
+	border-bottom: 1px dashed blue;
+}
+
+.reactivedocs-output {
+	border-bottom: 1px dashed orange;
+}
