@@ -1,0 +1,7 @@
+babel-preset-default/
+browserslist-config/
+jest-console/
+jest-preset-default/
+npm-package-json-lint-config/
+scripts/
+node_modules/
