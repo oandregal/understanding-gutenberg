@@ -6,7 +6,8 @@
   "scripts": {
     "test:e2e": "wp-scripts test-e2e --config tests/jest-e2e-config.json",
     "test:e2e-noconfig": "wp-scripts test-e2e",
-    "test:unit": "wp-scripts test-unit-js --config tests/jest-unit-config.json"
+    "test:unit": "wp-scripts test-unit-js --config tests/jest-unit-config.json",
+    "test:unit-noconfig": "wp-scripts test-unit-js"
   },
   "repository": {
     "type": "git",
