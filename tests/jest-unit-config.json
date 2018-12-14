@@ -1,0 +1,7 @@
+{
+	"rootDir": "..",
+	"preset": "@wordpress/jest-preset-default",
+	"testMatch": [
+		"<rootDir>tests/unit/**.test.js"
+	]
+}

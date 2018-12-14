@@ -1,0 +1,25 @@
+{
+  "name": "blocksettingsmenu-plugin",
+  "version": "1.0.0",
+  "description": "Example WordPress plugin to demonstrate extensibitily and wp-scripts use.",
+  "main": "blocksettingsmenu-plugin.js",
+  "scripts": {
+    "test:e2e": "wp-scripts test-e2e --config tests/jest-e2e-config.json",
+    "test:e2e-noconfig": "wp-scripts test-e2e",
+    "test:unit": "wp-scripts test-unit-js --config tests/jest-unit-config.json",
+    "test:unit-noconfig": "wp-scripts test-unit-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nosolosw/blocksettingsmenu-plugin.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nosolosw/blocksettingsmenu-plugin/issues"
+  },
+  "homepage": "https://github.com/nosolosw/blocksettingsmenu-plugin#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "file:./scripts"
+  }
+}
