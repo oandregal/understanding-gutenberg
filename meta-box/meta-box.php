@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin name: Demo Meta
+ * Plugin name: Understanding Gutenberg: Meta box demo
  */
 
 function demo_meta_box_add() {
