@@ -10,17 +10,17 @@
 function reactivedocs_plugin_script_register() {
 	wp_register_script(
 		'reactivedocs-gutenberg-js',
-		plugins_url( 'build/editor.js', __FILE__ ),
+		plugins_url( 'assets/editor.js', __FILE__ ),
 		array( 'wp-editor', 'wp-element', 'wp-rich-text' )
 	);
 	wp_register_script(
 		'reactivedocs-engine-js',
-		plugins_url( 'engine.js', __FILE__ ),
+		plugins_url( 'assets/engine.js', __FILE__ ),
 		array( 'wp-dom-ready' )
 	);
 	wp_register_style(
 		'reactivedocs-css',
-		plugins_url( 'reactive-docs.css', __FILE__ )
+		plugins_url( 'assets/reactive-docs.css', __FILE__ )
 	);
 }
 add_action( 'init', 'reactivedocs_plugin_script_register' );
