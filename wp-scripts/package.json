@@ -18,7 +18,10 @@
   },
   "main": "wp-scripts-plugin.js",
   "devDependencies": {
-    "@wordpress/scripts": "2.5.0"
+    "@babel/core": "7.2.2",
+    "@babel/plugin-transform-react-jsx": "7.3.0",
+    "@wordpress/scripts": "file:../../gutenberg/packages/scripts",
+    "babel-loader": "8.0.5"
   },
   "scripts": {
     "check-engines": "wp-scripts check-engines",
