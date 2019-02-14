@@ -24,6 +24,8 @@
     "babel-loader": "8.0.5"
   },
   "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
     "check-engines": "wp-scripts check-engines",
     "check-licenses": "wp-scripts check-licenses --prod --gpl2 --ignore=abab",
     "lint-js": "wp-scripts lint-js wp-scripts-plugin.js",
