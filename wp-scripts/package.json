@@ -18,10 +18,7 @@
   },
   "main": "wp-scripts-plugin.js",
   "devDependencies": {
-    "@babel/core": "7.2.2",
-    "@babel/plugin-transform-react-jsx": "7.3.0",
-    "@wordpress/scripts": "file:../../gutenberg/packages/scripts",
-    "babel-loader": "8.0.5"
+    "@wordpress/scripts": "file:../../gutenberg/packages/scripts"
   },
   "scripts": {
     "build": "wp-scripts build",
@@ -32,5 +29,6 @@
     "lint-pkg-json": "wp-scripts lint-pkg-json package.json",
     "test-e2e": "wp-scripts test-e2e",
     "test-unit-js": "wp-scripts test-unit-js"
-  }
+  },
+  "dependencies": {}
 }
