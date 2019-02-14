@@ -1,3 +1,3 @@
-## Block example plugin
+## wp-scripts example plugin
 
-WordPress plugin to showcase how to work with blocks and wp-scripts.
+WordPress plugin to showcase how to work with wp-scripts.
