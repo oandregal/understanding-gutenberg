@@ -18,11 +18,7 @@
   },
   "main": "index.js",
   "devDependencies": {
-    "@babel/core": "7.3.3",
-    "@wordpress/scripts": "file:../../gutenberg/packages/scripts",
-    "@wordpress/webpack-config": "file:../../gutenberg/packages/webpack-config",
-    "babel-loader": "8.0.5",
-    "source-map-loader": "0.2.4"
+    "@wordpress/scripts": "file:../../gutenberg/packages/scripts"
   },
   "scripts": {
     "build": "wp-scripts build"
