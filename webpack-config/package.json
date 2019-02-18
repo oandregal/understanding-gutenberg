@@ -1,0 +1,32 @@
+{
+  "name": "webpack-config",
+  "version": "1.0.0",
+  "description": "Plugin to showcase how to work with webpack-config.",
+  "author": "WordPress contributors",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "wordpress",
+    "webpack-config"
+  ],
+  "homepage": "https://github.com/nosolosw/understanding-gutenberg#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nosolosw/understanding-gutenberg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nosolosw/understanding-gutenberg/issues"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "7.3.3",
+    "@wordpress/webpack-config": "file:../../gutenberg/packages/webpack-config",
+    "babel-loader": "8.0.5",
+    "source-map-loader": "0.2.4",
+    "webpack": "4.29.5",
+    "webpack-cli": "3.2.3"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "dependencies": {}
+}
