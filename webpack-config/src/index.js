@@ -16,22 +16,27 @@
         },
         edit: function( props ) {
             if ( props.isSelected ) {
-                return (
-                    <input
-                        onChange={ onChangeHandler( props ) }
-                        value={ props.attributes.activity || '' }
-                        />
-                );
+                return ( el(
+                    'input',
+                    {
+                        onChange: onChangeHandler( props ),
+                        value: props.attributes.activity || ''
+                    }
+                ) );
             } else {
-                return (
-                    <p>'I ♥ ' + props.attributes.activity + '.'</p>
-                );
+                return ( el(
+                    'p',
+                    {},
+                    'I ♥ ' + props.attributes.activity + '.'
+                ) );
             }
         },
         save: function( props ) {
-            return (
-                <p>'I ♥ ' + props.attributes.activity + '.'</p>
-            );
+            return ( el(
+                'p',
+                {},
+                'I ♥ ' + props.attributes.activity + '.'
+            ) );
         },
     } );
 } )( window.wp );
