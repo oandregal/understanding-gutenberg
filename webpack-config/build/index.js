@@ -98,4 +98,4 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
 /***/ })
 
 /******/ });
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=index.js.map
