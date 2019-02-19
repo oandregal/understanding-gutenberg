@@ -1,10 +1,5 @@
 ( function( wp ) {
     var el = wp.element.createElement;
-    var onChangeHandler = function( props) {
-        return function( event ) {
-            props.setAttributes( { activity: event.target.value, } );
-        }
-    }
     wp.blocks.registerBlockType( 'blockexample-plugin/block', {
         title: 'Love',
         icon: 'heart',
@@ -15,27 +10,17 @@
             },
         },
         edit: function( props ) {
-            if ( props.isSelected ) {
-                return ( el(
-                    'input',
-                    {
-                        onChange: onChangeHandler( props ),
-                        value: props.attributes.activity || ''
-                    }
-                ) );
-            } else {
-                return ( el(
-                    'p',
-                    {},
-                    'I ♥ ' + props.attributes.activity + '.'
-                ) );
-            }
+            return ( el(
+                'p',
+                {},
+                'I ♥ Gutenberg.'
+            ) );
         },
         save: function( props ) {
             return ( el(
                 'p',
                 {},
-                'I ♥ ' + props.attributes.activity + '.'
+                'I ♥ .'
             ) );
         },
     } );
