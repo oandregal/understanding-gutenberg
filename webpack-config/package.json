@@ -21,6 +21,7 @@
     "@wordpress/scripts": "file:../../gutenberg/packages/scripts"
   },
   "scripts": {
+    "start": "wp-scripts start",
     "build": "wp-scripts build"
   },
   "dependencies": {}
