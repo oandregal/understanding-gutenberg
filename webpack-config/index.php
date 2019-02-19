@@ -10,7 +10,7 @@
 function webpack_config_plugin_script_register() {
 	wp_register_script(
 		'webpack-config-plugin-block',
-		plugins_url( 'index.build.js', __FILE__ ),
+		plugins_url( 'build/index.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-element' )
 	);
 }
