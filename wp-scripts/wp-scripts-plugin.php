@@ -10,7 +10,7 @@
 function wp_scripts_plugin_script_register() {
 	wp_register_script(
 		'wp-scripts-plugin-block',
-		plugins_url( 'wp-scripts-plugin.build.js', __FILE__ ),
+		plugins_url( 'build/index.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-element' )
 	);
 }
