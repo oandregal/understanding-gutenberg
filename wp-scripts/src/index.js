@@ -5,14 +5,6 @@ registerBlockType( 'blockexample-plugin/block', {
     title: 'Love',
     icon: 'heart',
     category: 'common',
-    edit: () => createElement(
-        'p',
-        {},
-        'I ♥ Gutenberg.'
-    ),
-    save: () => createElement(
-        'p',
-        {},
-        'I ♥ Gutenberg.'
-    ),
+    edit: () => <p>I ♥ Gutenberg.</p>,
+    save: () => <p>I ♥ Gutenberg.</p>,
 } );
