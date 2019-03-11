@@ -1,3 +1,28 @@
+# Copyright (C) 2019
+# This file is distributed under the same license as the Scratch Plugin plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Scratch Plugin\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/scratch\n"
+"Last-Translator: Marcus Kazmierczak <marcus@mkaz.com>\n"
+"Language-Team: Esperanto <marcus@mkaz.com>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-02-18T07:20:46-08:00\n"
+"PO-Revision-Date: 2019-02-18 08:16-0800\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Domain: myguten\n"
+
+#. Plugin Name of the plugin
+msgid "Scratch Plugin"
+msgstr "Scratch kromprogrameto"
+
 #: block.js:6
 msgid "Simple Block"
 msgstr "Simpla bloko"
+
+#: block.js:13 block.js:21
+msgid "Hello World"
+msgstr "Saltuon mundo"
