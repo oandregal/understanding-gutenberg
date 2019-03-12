@@ -1,0 +1,43 @@
+{
+  "name": "wp-scripts",
+  "version": "1.0.0",
+  "description": "Plugin to showcase how to work with wp-scripts.",
+  "author": "WordPress contributors",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "wordpress",
+    "wp-scripts"
+  ],
+  "homepage": "https://github.com/nosolosw/understanding-gutenberg#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nosolosw/understanding-gutenberg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nosolosw/understanding-gutenberg/issues"
+  },
+  "main": "wp-scripts-plugin.js",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-async-generator-functions": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@wordpress/babel-plugin-import-jsx-pragma": "file:../../gutenberg/packages/babel-plugin-import-jsx-pragma",
+    "@wordpress/babel-preset-default": "file:../../gutenberg/packages/babel-preset-default",
+    "@wordpress/browserslist-config": "file:../../gutenberg/packages/browserslist-config",
+    "@wordpress/scripts": "file:../../gutenberg/packages/scripts"
+  },
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "check-engines": "wp-scripts check-engines",
+    "check-licenses": "wp-scripts check-licenses --prod --gpl2 --ignore=abab",
+    "lint-js": "wp-scripts lint-js wp-scripts-plugin.js",
+    "lint-pkg-json": "wp-scripts lint-pkg-json package.json",
+    "test-e2e": "wp-scripts test-e2e",
+    "test-unit-js": "wp-scripts test-unit-js"
+  },
+  "dependencies": {}
+}
