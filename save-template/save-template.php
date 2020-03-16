@@ -10,7 +10,7 @@
 function save_template_plugin_script_register() {
 	wp_register_script(
 		'save-template-plugin-block',
-		plugins_url( 'save-template.js', __FILE__ ),
+		plugins_url( 'build/index.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-element', 'wp-edit-post' )
 	);
 }
