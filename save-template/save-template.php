@@ -14,16 +14,40 @@ function save_template_plugin_script_register() {
 		array( 'wp-blocks', 'wp-element', 'wp-edit-post' )
 	);
 }
-add_action( 'init', 'save_template_plugin_script_register' );
 
-function save_template_plugin_script_enqueue() {
+function save_template_plugin_enqueue_block_editor_assets() {
 	wp_enqueue_script( 'save-template-plugin-block' );
 }
-add_action( 'enqueue_block_editor_assets', 'save_template_plugin_script_enqueue' );
 
-function save_template_register_template() {
-	$post_type_object = get_post_type_object( 'post' );
-	$post_type_object->template = array(
+function save_template_plugin_register_template_cpt() {
+	$args = array(
+		'label'        => 'P2 Template',
+		'description'  => 'CPT to store P2 templates',
+		'public'       => false,
+		'show_ui'      => false,
+		'show_in_rest' => true,
+		'rest_base'    => '__experimental/p2-templates',
+		'capabilities' => array(
+			'read'                   => 'edit_theme_options',
+			'create_posts'           => 'edit_theme_options',
+			'edit_posts'             => 'edit_theme_options',
+			'edit_published_posts'   => 'edit_theme_options',
+			'delete_published_posts' => 'edit_theme_options',
+			'edit_others_posts'      => 'edit_theme_options',
+			'delete_others_posts'    => 'edit_theme_options',
+		),
+		'map_meta_cap' => true,
+		'supports'     => array(
+			'editor',
+			'revisions',
+		),
+	);
+	register_post_type( 'p2_template', $args );
+}
+
+function save_template_plugin_get_template_from_cpt() {
+	// TODO: retrieve from database.
+	return array(
 		array( 'core/paragraph', array( 'placeholder' => 'Summary' ) ),
 		array( 'core/paragraph', array( 'placeholder' => 'Why is it important?' ) ),
 		array( 'core/separator' ),
@@ -32,4 +56,17 @@ function save_template_register_template() {
 		array( 'core/paragraph', array( 'content' => 'Next milestone: date (brief description)' ) ),
 	);
 }
-add_action( 'init', 'save_template_register_template' );
+
+function save_template_plugin_set_post_template() {
+	$post_type_object = get_post_type_object( 'post' );
+	$post_type_object->template = save_template_plugin_get_template_from_cpt();
+}
+
+function save_template_plugin_init() {
+	save_template_plugin_register_template_cpt();
+	save_template_plugin_set_post_template();
+	save_template_plugin_script_register();
+}
+
+add_action( 'init', 'save_template_plugin_init' );
+add_action( 'enqueue_block_editor_assets', 'save_template_plugin_enqueue_block_editor_assets' );
