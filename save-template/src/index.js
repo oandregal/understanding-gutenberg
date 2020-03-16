@@ -4,20 +4,27 @@
 import { createElement } from '@wordpress/element';
 import { PluginBlockSettingsMenuItem } from '@wordpress/edit-post';
 import { registerPlugin } from '@wordpress/plugins';
+import { useSelect } from '@wordpress/data';
 
-function fillBlockSettingsMenuSlot() {
+function SaveTemplate() {
+	const selectedBlocks = useSelect( ( select ) => {
+		const selectors = select( 'core/block-editor' );
+		return selectors.hasMultiSelection()
+			? selectors.getMultiSelectedBlocks()
+			: selectors.getSelectedBlock();
+	} );
 	return createElement(
 		PluginBlockSettingsMenuItem,
 		{
-			icon: 'screenoptions',
 			label: 'Save template',
 			onClick: function() {
-				console.log( 'Template saved' );
+				console.log( 'Blocks selected are ', selectedBlocks );
 			},
 		},
 		null
 	);
 }
-registerPlugin( 'blocksettingsmenu-plugin', {
-	render: fillBlockSettingsMenuSlot,
+registerPlugin( 'save-template-plugin', {
+	icon: 'screenoptions',
+	render: SaveTemplate,
 } );
