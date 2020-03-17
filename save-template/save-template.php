@@ -45,7 +45,7 @@ function save_template_plugin_register_template_cpt() {
 	register_post_type( 'p2_template', $args );
 }
 
-function save_template_plugin_get_template_from_cpt() {
+function save_template_plugin_get_template_from_cpt( $template_name = 'default' ) {
 	// TODO: this should be a void template.
 	// To be fixed when templates can be saved from the client.
 	$template = array(
@@ -56,25 +56,28 @@ function save_template_plugin_get_template_from_cpt() {
 		array( 'core/paragraph', array( 'content' => 'Status: #backlog #in-progress #needs-review #done' ) ),
 		array( 'core/paragraph', array( 'content' => 'Next milestone: date (brief description)' ) ),
 	);
-	$post_type_filter = 'p2_template';
+	$post_type_filter   = 'p2_template';
+	$post_name_filter   = 'p2-template-' . $template_name;
+	$post_status_filter = 'draft';
 	$recent_posts     = wp_get_recent_posts(
 		array(
 			'numberposts' => 1,
-			'orderby'     => 'date',
 			'order'       => 'desc',
+			'orderby'     => 'date',
+			'post_name'   => $post_name_filter,
+			'post_status' => $post_status_filter,
 			'post_type'   => $post_type_filter,
 		)
 	);
 
-	// For demo purposes we use only 1 template,
-	// but we're going to need to pull more.
 	if ( is_array( $recent_posts ) && ( count( $recent_posts ) === 1 ) ) {
 		$template = unserialize( $recent_posts[0]['post_content'], [ 'allowed_classes' => false ] );
 	} else {
 		wp_insert_post(
 			array(
 				'post_content' => serialize( $template ),
-				'post_status'  => 'publish',
+				'post_name'    => $post_name_filter,
+				'post_status'  => $post_status_filter,
 				'post_type'    => $post_type_filter,
 			),
 			true
