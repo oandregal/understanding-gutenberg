@@ -46,8 +46,9 @@ function save_template_plugin_register_template_cpt() {
 }
 
 function save_template_plugin_get_template_from_cpt() {
-	// TODO: retrieve from database.
-	return array(
+	// TODO: this should be a void template.
+	// To be fixed when templates can be saved from the client.
+	$template = array(
 		array( 'core/paragraph', array( 'placeholder' => 'Summary' ) ),
 		array( 'core/paragraph', array( 'placeholder' => 'Why is it important?' ) ),
 		array( 'core/separator' ),
@@ -55,6 +56,32 @@ function save_template_plugin_get_template_from_cpt() {
 		array( 'core/paragraph', array( 'content' => 'Status: #backlog #in-progress #needs-review #done' ) ),
 		array( 'core/paragraph', array( 'content' => 'Next milestone: date (brief description)' ) ),
 	);
+	$post_type_filter = 'p2_template';
+	$recent_posts     = wp_get_recent_posts(
+		array(
+			'numberposts' => 1,
+			'orderby'     => 'date',
+			'order'       => 'desc',
+			'post_type'   => $post_type_filter,
+		)
+	);
+
+	// For demo purposes we use only 1 template,
+	// but we're going to need to pull more.
+	if ( is_array( $recent_posts ) && ( count( $recent_posts ) === 1 ) ) {
+		$template = unserialize( $recent_posts[0]['post_content'], [ 'allowed_classes' => false ] );
+	} else {
+		wp_insert_post(
+			array(
+				'post_content' => serialize( $template ),
+				'post_status'  => 'publish',
+				'post_type'    => $post_type_filter,
+			),
+			true
+		);
+	}
+
+	return $template;
 }
 
 function save_template_plugin_set_post_template() {
