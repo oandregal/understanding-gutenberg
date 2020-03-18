@@ -24,7 +24,7 @@ function save_template_plugin_register_template_cpt() {
 		'label'        => 'P2 Template',
 		'description'  => 'CPT to store P2 templates',
 		'public'       => false,
-		'show_ui'      => false,
+		'show_ui'      => true,
 		'show_in_rest' => true,
 		'rest_base'    => '__experimental/p2-templates',
 		'capabilities' => array(
@@ -38,6 +38,7 @@ function save_template_plugin_register_template_cpt() {
 		),
 		'map_meta_cap' => true,
 		'supports'     => array(
+			'title',
 			'editor',
 			'revisions',
 		),
@@ -45,20 +46,11 @@ function save_template_plugin_register_template_cpt() {
 	register_post_type( 'p2_template', $args );
 }
 
-function save_template_plugin_get_template_from_cpt( $template_name = 'default' ) {
-	// TODO: this should be a void template.
-	// To be fixed when templates can be saved from the client.
-	$template = array(
-		array( 'core/paragraph', array( 'placeholder' => 'Summary' ) ),
-		array( 'core/paragraph', array( 'placeholder' => 'Why is it important?' ) ),
-		array( 'core/separator' ),
-		array( 'core/paragraph', array( 'content' => 'Assigned: @who' ) ),
-		array( 'core/paragraph', array( 'content' => 'Status: #backlog #in-progress #needs-review #done' ) ),
-		array( 'core/paragraph', array( 'content' => 'Next milestone: date (brief description)' ) ),
-	);
+function save_template_plugin_get_template_content( $template_name = 'default' ) {
+	$template = '<!-- wp:paragraph {"placeholder":"Template content"} --><p></p><!-- /wp:paragraph -->';
 	$post_type_filter   = 'p2_template';
-	$post_name_filter   = 'p2-template-' . $template_name;
-	$post_status_filter = 'draft';
+	$post_name_filter   = $template_name;
+	$post_status_filter = 'publish';
 	$recent_posts     = wp_get_recent_posts(
 		array(
 			'numberposts' => 1,
@@ -71,11 +63,11 @@ function save_template_plugin_get_template_from_cpt( $template_name = 'default' 
 	);
 
 	if ( is_array( $recent_posts ) && ( count( $recent_posts ) === 1 ) ) {
-		$template = unserialize( $recent_posts[0]['post_content'], [ 'allowed_classes' => false ] );
+		$template = $recent_posts[0]['post_content'];
 	} else {
 		wp_insert_post(
 			array(
-				'post_content' => serialize( $template ),
+				'post_content' => $template,
 				'post_name'    => $post_name_filter,
 				'post_status'  => $post_status_filter,
 				'post_type'    => $post_type_filter,
@@ -87,9 +79,32 @@ function save_template_plugin_get_template_from_cpt( $template_name = 'default' 
 	return $template;
 }
 
+function save_template_plugin_transform_block_to_template( $block_content ) {
+	if ( empty( $block_content['blockName'] ) ) {
+		return [];
+	}
+
+	$inner_blocks = [];
+	foreach( $block_content[ 'innerBlocks' ] as $inner_block ) {
+		$inner_blocks[] = save_template_plugin_transform_block_to_template( $inner_block );
+	}
+	return [
+		$block_content['blockName'],
+		$block_content['attrs'],
+		$inner_blocks
+	];
+}
+
+function save_template_plugin_transform_to_template( $content ) {
+	$blocks = parse_blocks( $content );
+	$template = array_map( 'save_template_plugin_transform_block_to_template', $blocks );
+	return array_filter( $template ); // Clean the empty values
+}
+
 function save_template_plugin_set_post_template() {
+	$template_content = save_template_plugin_get_template_content();
 	$post_type_object = get_post_type_object( 'post' );
-	$post_type_object->template = save_template_plugin_get_template_from_cpt();
+	$post_type_object->template = save_template_plugin_transform_to_template( $template_content );
 }
 
 function save_template_plugin_init() {
