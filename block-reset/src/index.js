@@ -23,17 +23,22 @@ registerBlockType( 'nosolosw/template', {
 					onClick={ () => {
 						resetBlocks( [
 							createBlock( 'core/heading', {
-								placeholder: 'Heading Before Image',
+								content: 'Project Idea',
 							} ),
-							createBlock( 'core/image' ),
+							createBlock( 'core/paragraph', {
+								placeholder: 'Briefly describe the idea.',
+							} ),
 							createBlock( 'core/heading', {
-								placeholder: 'Heading After Image',
+								content: 'OKRs',
+							} ),
+							createBlock( 'core/paragraph', {
+								placeholder:
+									'How this impacts the company business.',
 							} ),
 						] );
-						// TODO: set template editor
 					} }
 				>
-					Add Heading
+					Add Idea Template
 				</Button>
 				&nbsp;
 				<Button
@@ -41,17 +46,16 @@ registerBlockType( 'nosolosw/template', {
 					onClick={ () => {
 						resetBlocks( [
 							createBlock( 'core/paragraph', {
-								placeholder: 'Text Before Image',
+								content: 'Attendees: ',
 							} ),
-							createBlock( 'core/image' ),
-							createBlock( 'core/paragraph', {
-								placeholder: 'Text After Image',
+							createBlock( 'core/heading', {
+								content: 'Things Addressed',
 							} ),
+							createBlock( 'core/list' ),
 						] );
-						// TODO: set template editor
 					} }
 				>
-					Add Paragraph
+					Add Meeting Template
 				</Button>
 			</>
 		);
