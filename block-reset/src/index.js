@@ -1,8 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { registerBlockType } from '@wordpress/blocks';
+import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { useDispatch } from '@wordpress/data';
 import { Button } from '@wordpress/components';
+
+const template = [ [ 'core/paragraph' ] ];
 
 registerBlockType( 'nosolosw/template', {
 	title: 'Template Block',
@@ -10,20 +13,52 @@ registerBlockType( 'nosolosw/template', {
 	category: 'common',
 	icon: 'controls-repeat',
 	attributes: {},
-	edit: () => (
+	edit: () => {
+		const { resetBlocks } = useDispatch( 'core/block-editor' );
+
+		return (
+			<>
+				<Button
+					isPrimary
+					onClick={ () => {
+						resetBlocks( [
+							createBlock( 'core/heading', {
+								placeholder: 'Heading Before Image',
+							} ),
+							createBlock( 'core/image' ),
+							createBlock( 'core/heading', {
+								placeholder: 'Heading After Image',
+							} ),
+						] );
+						// TODO: set template editor
+					} }
+				>
+					Add Heading
+				</Button>
+				&nbsp;
+				<Button
+					isPrimary
+					onClick={ () => {
+						resetBlocks( [
+							createBlock( 'core/paragraph', {
+								placeholder: 'Text Before Image',
+							} ),
+							createBlock( 'core/image' ),
+							createBlock( 'core/paragraph', {
+								placeholder: 'Text After Image',
+							} ),
+						] );
+						// TODO: set template editor
+					} }
+				>
+					Add Paragraph
+				</Button>
+			</>
+		);
+	},
+	save: () => (
 		<>
-			<Button
-				isPrimary
-				onClick={()=>console.log('first')}>
-				One
-			</Button>
-			&nbsp;
-			<Button
-				isPrimary
-				onClick={()=> console.log('second')}>
-				Two
-			</Button>
+			<a>One</a> <a>Two</a>{ ' ' }
 		</>
 	),
-	save: () => <><a>One</a> <a>Two</a> </>
 } );
