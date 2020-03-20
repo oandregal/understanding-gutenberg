@@ -60,9 +60,5 @@ registerBlockType( 'nosolosw/template', {
 			</>
 		);
 	},
-	save: () => (
-		<>
-			<a>One</a> <a>Two</a>{ ' ' }
-		</>
-	),
+	save: () => null,
 } );
