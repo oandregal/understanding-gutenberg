@@ -2,14 +2,16 @@
  * WordPress dependencies
  */
 import { createBlock, parse, registerBlockType } from '@wordpress/blocks';
-import { useDispatch, useSelect } from '@wordpress/data';
+import { dispatch, useDispatch, useSelect } from '@wordpress/data';
 import { Button } from '@wordpress/components';
+import domReady from '@wordpress/dom-ready';
+
+// Trigger reusable blocks fetch.
+// They aren't loaded until the user intends to insert something
+// (clicks the inserter button, types the slash symbol, etc).
+domReady( ( ) => dispatch( 'core/editor' ).__experimentalFetchReusableBlocks() );
 
 const useReusableBlocks = () => {
-	// // TODO: needs fetching reusable blocks first
-	// const { __experimentalFetchReusableBlocks } = useDispatch( 'core/editor' );
-	// __experimentalFetchReusableBlocks();
-
 	const { reusableBlocks } = useSelect( select => ( {
 		reusableBlocks: select('core/editor').__experimentalGetReusableBlocks()
 	} ) );
