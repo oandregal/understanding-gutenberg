@@ -5,7 +5,7 @@ import { createBlock, registerBlockType } from '@wordpress/blocks';
 import { useDispatch } from '@wordpress/data';
 import { Button } from '@wordpress/components';
 
-registerBlockType( 'nosolosw/template', {
+registerBlockType( 'understanding-gutenberg/template', {
 	title: 'Template Block',
 	description: 'Experiment to reset the editor contents after load',
 	category: 'common',

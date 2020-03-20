@@ -8,7 +8,7 @@
  */
 
 function block_reset_plugin_script_register() {
-	$asset_file = './build/index.asset.php';
+	$asset_file = __DIR__ . '/build/index.asset.php';
 	$asset = file_exists( $asset_file )
 		? require( $asset_file )
 		: null;
@@ -21,6 +21,9 @@ function block_reset_plugin_script_register() {
 		$dependencies,
 		$version
 	);
+	register_block_type( 'understanding-gutenberg/template', array(
+		'editor_script' => 'block-reset-plugin-block'
+	) );
 }
 
 function block_reset_plugin_enqueue_block_editor_assets() {
@@ -30,7 +33,7 @@ function block_reset_plugin_enqueue_block_editor_assets() {
 function block_reset_plugin_block_editor_settings( $settings ) {
 	// pull reusable blocks from database (perhaps filter by metadata if we want)
 	// add them to block settings
-	$settings['p2_template'] = [
+	$settings['p2_templates'] = [
 		[
 			'title' => 'Meeting Template',
 			'content' => '<!-- wp:paragraph --><p>Attendees: </p><!-- /wp:paragraph --><!-- wp:heading --><h2>Things Addressed</h2><!-- /wp:heading --><!-- wp:list --><ul><li></li></ul><!-- /wp:list --><!-- wp:paragraph --><p></p><!-- /wp:paragraph -->'
@@ -40,9 +43,10 @@ function block_reset_plugin_block_editor_settings( $settings ) {
 			'content' => '<!-- wp:paragraph --><p>Attendees: </p><!-- /wp:paragraph --><!-- wp:heading --><h2>Things Addressed</h2><!-- /wp:heading --><!-- wp:list --><ul><li></li></ul><!-- /wp:list --><!-- wp:paragraph --><p></p><!-- /wp:paragraph -->'
 		]
 	];
+
 	return $settings;
 }
 
 add_action( 'init', 'block_reset_plugin_script_register' );
 add_action( 'enqueue_block_editor_assets', 'block_reset_plugin_enqueue_block_editor_assets' );
-// add_filter( 'block_editor_settings', 'block_reset_plugin_block_editor_settings' );
+add_filter( 'block_editor_settings', 'block_reset_plugin_block_editor_settings' );
