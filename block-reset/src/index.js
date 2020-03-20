@@ -1,9 +1,47 @@
 /**
  * WordPress dependencies
  */
-import { createBlock, registerBlockType } from '@wordpress/blocks';
-import { useDispatch } from '@wordpress/data';
+import { createBlock, parse, registerBlockType } from '@wordpress/blocks';
+import { useDispatch, useSelect } from '@wordpress/data';
 import { Button } from '@wordpress/components';
+
+const useReusableBlocks = () => {
+	// // TODO: needs fetching reusable blocks first
+	// const { __experimentalFetchReusableBlocks } = useDispatch( 'core/editor' );
+	// __experimentalFetchReusableBlocks();
+
+	const { reusableBlocks } = useSelect( select => ( {
+		reusableBlocks: select('core/editor').__experimentalGetReusableBlocks()
+	} ) );
+
+	return reusableBlocks;
+};
+
+const toBlocks = ( blocks ) => blocks.map(
+	( { name, attributes, innerBlocks } ) => createBlock( name, attributes, toBlocks( innerBlocks ) )
+);
+
+const edit = () => {
+	const { resetBlocks } = useDispatch( 'core/block-editor' );
+	const reusableBlocks = useReusableBlocks();
+
+	return (
+		<>
+			{
+				reusableBlocks.map( ( { title, content } ) => ( [
+					<Button
+						isPrimary
+						onClick={ () => resetBlocks( toBlocks( parse( content ) ) ) }
+					>
+						{ title }
+					</Button>,
+					' '
+				] )
+				)
+			}
+		</>
+	);
+};
 
 registerBlockType( 'understanding-gutenberg/template', {
 	title: 'Template Block',
@@ -11,52 +49,6 @@ registerBlockType( 'understanding-gutenberg/template', {
 	category: 'common',
 	icon: 'controls-repeat',
 	attributes: {},
-	edit: () => {
-		const { resetBlocks } = useDispatch( 'core/block-editor' );
-
-		return (
-			<>
-				<Button
-					isPrimary
-					onClick={ () => {
-						resetBlocks( [
-							createBlock( 'core/heading', {
-								content: 'Project Idea',
-							} ),
-							createBlock( 'core/paragraph', {
-								placeholder: 'Briefly describe the idea.',
-							} ),
-							createBlock( 'core/heading', {
-								content: 'OKRs',
-							} ),
-							createBlock( 'core/paragraph', {
-								placeholder:
-									'How this impacts the company business.',
-							} ),
-						] );
-					} }
-				>
-					Add Idea Template
-				</Button>
-				&nbsp;
-				<Button
-					isPrimary
-					onClick={ () => {
-						resetBlocks( [
-							createBlock( 'core/paragraph', {
-								content: 'Attendees: ',
-							} ),
-							createBlock( 'core/heading', {
-								content: 'Things Addressed',
-							} ),
-							createBlock( 'core/list' ),
-						] );
-					} }
-				>
-					Add Meeting Template
-				</Button>
-			</>
-		);
-	},
+	edit,
 	save: () => null,
 } );
