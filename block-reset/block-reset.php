@@ -21,13 +21,28 @@ function block_reset_plugin_script_register() {
 		$dependencies,
 		$version
 	);
-	error_log('register_script');
 }
 
 function block_reset_plugin_enqueue_block_editor_assets() {
-	error_log('enqueue_script');
 	wp_enqueue_script( 'block-reset-plugin-block' );
+}
+
+function block_reset_plugin_block_editor_settings( $settings ) {
+	// pull reusable blocks from database (perhaps filter by metadata if we want)
+	// add them to block settings
+	$settings['p2_template'] = [
+		[
+			'title' => 'Meeting Template',
+			'content' => '<!-- wp:paragraph --><p>Attendees: </p><!-- /wp:paragraph --><!-- wp:heading --><h2>Things Addressed</h2><!-- /wp:heading --><!-- wp:list --><ul><li></li></ul><!-- /wp:list --><!-- wp:paragraph --><p></p><!-- /wp:paragraph -->'
+		],
+		[
+			'title' => 'Project Idea',
+			'content' => '<!-- wp:paragraph --><p>Attendees: </p><!-- /wp:paragraph --><!-- wp:heading --><h2>Things Addressed</h2><!-- /wp:heading --><!-- wp:list --><ul><li></li></ul><!-- /wp:list --><!-- wp:paragraph --><p></p><!-- /wp:paragraph -->'
+		]
+	];
+	return $settings;
 }
 
 add_action( 'init', 'block_reset_plugin_script_register' );
 add_action( 'enqueue_block_editor_assets', 'block_reset_plugin_enqueue_block_editor_assets' );
+// add_filter( 'block_editor_settings', 'block_reset_plugin_block_editor_settings' );
