@@ -5,8 +5,6 @@ import { createBlock, registerBlockType } from '@wordpress/blocks';
 import { useDispatch } from '@wordpress/data';
 import { Button } from '@wordpress/components';
 
-const template = [ [ 'core/paragraph' ] ];
-
 registerBlockType( 'nosolosw/template', {
 	title: 'Template Block',
 	description: 'Experiment to reset the editor contents after load',
