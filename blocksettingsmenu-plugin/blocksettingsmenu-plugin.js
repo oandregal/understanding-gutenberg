@@ -1,19 +1,19 @@
-( function( wp ) {
-    function fillBlockSettingsMenuSlot( ) {
-        return wp.element.createElement(
-            wp.editPost.PluginBlockSettingsMenuItem,
-            {
-                icon: 'screenoptions',
-                label: 'My new plugin',
-                allowedBlocks: [ 'core/paragraph' ],
-                onClick: function( ) {
-                    console.log( 'Block clicked ' );
-                }
-            },
-            null,
-        );
-    }
-    wp.plugins.registerPlugin( 'blocksettingsmenu-plugin', {
-        render: fillBlockSettingsMenuSlot,
-    });
-} )( window.wp );
+( function( element, editPost, plugins ) {
+	function fillBlockSettingsMenuSlot() {
+		return element.createElement(
+			editPost.PluginBlockSettingsMenuItem,
+			{
+				icon: 'screenoptions',
+				label: 'My new plugin',
+				allowedBlocks: [ 'core/list' ],
+				onClick: function() {
+					console.log( 'Block clicked' );
+				},
+			},
+			null
+		);
+	}
+	plugins.registerPlugin( 'block-settings-menu-plugin', {
+		render: fillBlockSettingsMenuSlot,
+	} );
+} )( window.wp.element, window.wp.editPost, window.wp.plugins );

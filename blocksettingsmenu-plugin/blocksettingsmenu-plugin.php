@@ -11,8 +11,8 @@ function blocksettingsmenu_plugin_script_register() {
 	wp_register_script(
 		'blocksettingsmenu-plugin',
 		plugins_url( 'blocksettingsmenu-plugin.js', __FILE__ ),
-		array( 'wp-plugins', 'wp-element', 'wp-edit-post', 'wp-api-request', 'wp-data', 'wp-components', 'wp-blocks', 'wp-editor' ),
-		'0.0.1',
+		array( 'wp-element', 'wp-edit-post', 'wp-plugins' ),
+		filemtime( plugin_dir_path( __FILE__ ) . 'blocksettingsmenu-plugin.js' ),
 		true
 	);
 }
