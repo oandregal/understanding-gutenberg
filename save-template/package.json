@@ -16,6 +16,6 @@
   "author": "Automattic",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@wordpress/scripts": "7.1.2"
+    "@wordpress/scripts": "24.6.0"
   }
 }
