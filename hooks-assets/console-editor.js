@@ -1,0 +1,1 @@
+console.log('enqueue-block-editor-assets script');
