@@ -32,17 +32,10 @@ function enqueue_block_assets_register_scripts_and_styles() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'wp-block.css' )
 	);
 	wp_enqueue_script(
-		'enqueue_block_assets_script_console',
+		'enqueue_block_assets_script',
 		plugins_url( 'console.js', __FILE__ ),
 		array(),
 		filemtime( plugin_dir_path( __FILE__ ) . 'console.js' ),
-		true
-	);
-	wp_enqueue_script(
-		'enqueue_block_assets_script_wp_api',
-		plugins_url( 'wp-api.js', __FILE__ ),
-		array(),
-		filemtime( plugin_dir_path( __FILE__ ) . 'wp-api.js' ),
 		true
 	);
 }
@@ -62,17 +55,10 @@ function enqueue_block_editor_assets_register_scripts_and_styles() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'wp-block.css' )
 	);
 	wp_enqueue_script(
-		'enqueue_block_editor_assets_script_console',
+		'enqueue_block_editor_assets_script',
 		plugins_url( 'console-editor.js', __FILE__ ),
 		array( 'wp-dom' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'console-editor.js' ),
-		true
-	);
-	wp_enqueue_script(
-		'enqueue_block_editor_assets_script_wp_api',
-		plugins_url( 'wp-api-editor.js', __FILE__ ),
-		array( 'wp-dom' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'wp-api-editor.js' ),
 		true
 	);
 }
